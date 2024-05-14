@@ -1,20 +1,21 @@
-
 export const runtime = 'edge'
 
 export async function GET(request) {
-  let responseText = 'Hello'
+  const isGetRequest = (request) => request.method === "GET";
+  const max = 4;
+  const tableCodes = {
+    0: "1",
+    1: "2",
+    2: "3",
+    3: "4"
+  };
 
-  // In the edge runtime you can use Bindings that are available in your application
-  // (for more details see:
-  //    - https://developers.cloudflare.com/pages/framework-guides/deploy-a-nextjs-site/#use-bindings-in-your-nextjs-application
-  //    - https://developers.cloudflare.com/pages/functions/bindings/
-  // )
-  //
-  // KV Example:
-  // const myKv = getRequestContext().env.MY_KV_NAMESPACE
-  // await myKv.put('suffix', ' from a KV store!')
-  // const suffix = await myKv.get('suffix')
-  // responseText += suffix
+  const generateRandomNumber = (tableCodes, max) => {
+    const randomNumber = Math.floor(Math.random() * max);
+    return tableCodes[randomNumber];
+  };
 
-  return new Response(responseText)
+  const response = isGetRequest ? `Random Number Generated: ${generateRandomNumber(tableCodes, max)}` : "please use GET";
+
+  return new Response(response);
 }
