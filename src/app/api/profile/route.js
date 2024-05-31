@@ -13,16 +13,11 @@ export async function GET(request) {
     return new Response('Missig or Incorrect UserId', { status: 400 });
   }
 
-  return await fetch(origin, {
+  const response = await fetch(origin, {
     headers: {
       "Auth-Token": kvValue,
     }
   })
 
-  // let newRequest = new Request(request);
-  // newRequest.headers.set("Auth-Token", kvValue)
-  // return new Response()
-  // return new Response(`User ID: ${kvValue}`, {
-  //   headers: {'Content-Type': 'text/plain'},
-  // });
+  return response;
 }
