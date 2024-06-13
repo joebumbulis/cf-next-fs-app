@@ -8,6 +8,11 @@ kv_namespaces = [
   { binding = "kv_user_IDs", id = "752cd695699f4d2a9017cf06efd5a712" }
 ]
 
+# Bind the Workers AI model catalog. Run machine learning models, powered by serverless GPUs, on Cloudflare’s global network
+# Docs: https://developers.cloudflare.com/pages/functions/bindings/#workers-ai
+[ai]
+binding = "AI"
+
 # Automatically place your workloads in an optimal location to minimize latency.
 # If you are running back-end logic in a Pages Function, running it closer to your back-end infrastructure
 # rather than the end user may result in better performance.
@@ -22,11 +27,6 @@ kv_namespaces = [
 # - https://developers.cloudflare.com/pages/functions/bindings/#secrets
 # [vars]
 # MY_VARIABLE = "production_value"
-
-# Bind the Workers AI model catalog. Run machine learning models, powered by serverless GPUs, on Cloudflare’s global network
-# Docs: https://developers.cloudflare.com/pages/functions/bindings/#workers-ai
-[ai]
-binding = "AI"
 
 # Bind a D1 database. D1 is Cloudflare’s native serverless SQL database.
 # Docs: https://developers.cloudflare.com/pages/functions/bindings/#d1-databases

@@ -1,27 +1,32 @@
-import { getRequestContext } from '@cloudflare/next-on-pages';
 
-export const runtime = 'edge'
+// import { getRequestContext } from '@cloudflare/next-on-pages'
 
-export async function GET(request) {
+// export const runtime = 'edge'
 
-  // const userId = request.headers.get('user-id');
-  // const myKv = getRequestContext().env.kv_user_IDs;
-  // const kvValue = await myKv.get(userId) || false;
-  // const origin = "www.joebumbulis.com"
+// export async function GET(request) {
+//   const region = request.headers.get("cf-region")
+//   const city = request.headers.get("cf-ipcity")
 
-  // if (!userId || !kvValue) {
-  //   return new Response('Missig or Incorrect UserId', { status: 400 });
+//   //Add an error if city or region not read
 
-  const location = request.cf.city || request.cf.region || request.cf.country;
+//   if (!city || !region) {
+//     return new Response("City or Region is null", 403)
+//   }
 
-  const input = { prompt: "What is the origin of the phrase Hello, World" }
+//   //Generate an AI response
+//   const answer = await getRequestContext().env.AI.run("@cf/meta/llama-3-8b-instruct", {
+//     prompt: `Can you write me a funny poem about ${city}, ${region}?`,
+    // stream: true
+//   })
 
-  const answer = await getRequestContext().env.AI.run('@cf/meta/llama-3-8b-instruct', input);
+//   //Return an error if no AI response
+//   if (!answer) {
+//     return new Response("AI failed to return a response", 403)
+//   }
 
-  return Response.json(answer);
- 
-
-  // const response = location;
-
-  // return new Response(response);
-}
+//   return new Response(answer, {
+//     headers: {
+//       "content-type": "text/event-stream"
+//     }
+//   })
+// }
